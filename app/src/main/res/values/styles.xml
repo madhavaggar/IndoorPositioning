@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@android:color/holo_green_dark</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:editTextColor">@android:color/holo_red_dark</item>
+        <item name="searchViewStyle">@style/AppTheme.Toolbar.SearchView</item>
+    </style>
+
+    <style name="AppTheme.Toolbar.SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@android:color/holo_green_light</item>
+        <item name="searchIcon">@android:drawable/ic_menu_search</item>
+    </style>
+
+</resources>
