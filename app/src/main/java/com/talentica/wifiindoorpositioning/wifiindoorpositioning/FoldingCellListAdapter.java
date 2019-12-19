@@ -8,7 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -18,10 +25,16 @@ import com.ramotion.foldingcell.FoldingCell;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.ReferencePoint;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Simple example of ListAdapter for using with Folding Cell
@@ -29,6 +42,12 @@ import androidx.annotation.NonNull;
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class FoldingCellListAdapter extends ArrayAdapter<ReferencePoint> {
+
+    int total;
+    JSONArray v = new JSONArray();
+    String s;
+    ArrayList<BarEntry> yvalues = new ArrayList<>();
+    BarDataSet dataSet;
 
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
 
@@ -71,46 +90,76 @@ public class FoldingCellListAdapter extends ArrayAdapter<ReferencePoint> {
 
         // bind data from selected element to view through view holder
         viewHolder.refname.setText(item.getName());
-        ArrayList NoOfEmp = new ArrayList();
+        RequestQueue MyRequestQueue = Volley.newRequestQueue(getContext());
+        String url = "http://10.2.89.153:8000/api/rpfreq?rp=";// <----enter your post url here
+        url=url + item.getName().trim();
+        JSONObject paramJson = new JSONObject();
+        try {
+            paramJson.put("rp", "1");
+        } catch (Exception e) {
+        }
 
-        NoOfEmp.add(new BarEntry(0, 0));
-        NoOfEmp.add(new BarEntry(10f, 1));
-        NoOfEmp.add(new BarEntry(13f, 2));
-        NoOfEmp.add(new BarEntry(12f, 3));
-        NoOfEmp.add(new BarEntry(1f, 4));
-        NoOfEmp.add(new BarEntry(14f, 5));
-        NoOfEmp.add(new BarEntry(15f, 6));
-        NoOfEmp.add(new BarEntry(18f, 7));
-        NoOfEmp.add(new BarEntry(18f, 8));
-        NoOfEmp.add(new BarEntry(1f, 9));
+        final JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // display response
+                        try {
+                            total = (Integer) response.get("total_visits");
+                            s = (String) response.get("crowd_freq");
+                            String[] arr = s.split(",");
+                            yvalues.clear();
+                            for (int i = 0; i < arr.length; i++) {
+                                yvalues.add(new BarEntry(Float.parseFloat(arr[i].trim()), (int) Float.parseFloat(String.valueOf(i).trim())));
+                                Log.i("Tag", yvalues.get(i).toString());
+                            }
+                            dataSet = new BarDataSet(yvalues, "Values");
+                            dataSet.setDrawValues(true);
 
-        ArrayList year = new ArrayList();
-
-        year.add("7-8");
-        year.add("8-9");
-        year.add("9-10");
-
-        year.add("10-11");
-        year.add("11-12");
-        year.add("12-13");
-        year.add("13-14");
-        year.add("14-15");
-        year.add("15-16");
-        year.add("16-17");
-            /*
-            year.add("17-18");
-            year.add("18-19");
-            year.add("19-20");
-            year.add("20-21");
-            */
-        BarDataSet bardataset = new BarDataSet(NoOfEmp, "Crowd Frequency");
-        viewHolder.barChart.animateY(3000);
-        final BarData data = new BarData(year, bardataset);
-        bardataset.setColors(ColorTemplate.JOYFUL_COLORS);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //Toast.makeText(getApplicationContext(), "positive" + response.toString(), Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "errormsg" + error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> MyData = new HashMap<String, String>();
+                MyData.put("rp", "1");
+                return MyData;
+            }
+        };
+        MyRequestQueue.add(getRequest);
         viewHolder.refimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewHolder.barChart.setData(data);
+                if (dataSet != null) {
+                    ArrayList<String> year = new ArrayList<String>();
+                    year.add("7-8");
+                    year.add("8-9");
+                    year.add("9-10");
+                    year.add("10-11");
+                    year.add("11-12");
+                    year.add("12-13");
+                    year.add("13-14");
+                    year.add("14-15");
+                    year.add("15-16");
+                    year.add("16-17");
+                    year.add("17-18");
+                    year.add("18-19");
+                    year.add("19-20");
+                    year.add("20-21");
+                    BarData data = new BarData(year, dataSet);
+                    viewHolder.barChart.setData(data);
+                    viewHolder.barChart.setDescription("Crowd Frequency");
+                    dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+                    viewHolder.barChart.animateY(3000);
+                }
             }
         });
         return cell;

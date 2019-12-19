@@ -119,7 +119,7 @@ public class StartPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(StartPage.this, Crowd_Activity.class);
+                Intent intent = new Intent(StartPage.this, SearchRefActivity.class);
                 intent.putExtra("projectId", projectId);
                 startActivity(intent);
             }
