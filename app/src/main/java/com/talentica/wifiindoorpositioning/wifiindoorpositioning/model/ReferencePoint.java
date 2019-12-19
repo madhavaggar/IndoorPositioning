@@ -5,6 +5,7 @@ import android.view.View;
 import java.util.Date;
 import java.util.UUID;
 
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
@@ -14,6 +15,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by suyashg on 25/08/17.
  */
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class ReferencePoint extends RealmObject {
 
     @PrimaryKey
@@ -23,13 +25,16 @@ public class ReferencePoint extends RealmObject {
     private String description;
     private double x;
     private double y;
-    private View.OnClickListener requestBtnClickListener;
 
     //    Important: must set it as: x y (space in between)
     private String locId;
 //    Important: These readings list count must be equal to the number of APS in area.
 //    If some AP is not accesible at this RP then put the least RSS value i.e. NaN in Algorithms.java
     private RealmList<AccessPoint> readings;
+
+    public ReferencePoint(){
+    }
+
 
     public String getId() {
         return id;
@@ -93,10 +98,6 @@ public class ReferencePoint extends RealmObject {
 
     public void setReadings(RealmList<AccessPoint> readings) {
         this.readings = readings;
-    }
-
-    public View.OnClickListener getRequestBtnClickListener() {
-        return requestBtnClickListener;
     }
 
 

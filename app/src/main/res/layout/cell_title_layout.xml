@@ -1,28 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearlaout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:visibility="gone">
+    android:background="@color/bgContent"
+    android:baselineAligned="false"
+    android:orientation="horizontal">
 
-    <!-- content header line -->
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       >
+    <!-- LEFT TITLE PART -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_weight="3"
+        android:background="@color/bgTitleLeft"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp">
 
-       <ImageView
-           android:id="@+id/refimage"
-           android:layout_width="60dp"
-           android:layout_height="60dp"
-           android:layout_alignParentLeft="true"
-           app:srcCompat="@drawable/bitcoin" />
+        <ImageView
+            android:id="@+id/refimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/bitcoin" />
+    </RelativeLayout>
+    <!-- RIGHT TITLE PART -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/bgTitleRight"
+        android:paddingStart="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp">
 
-       <TextView
-           android:id="@+id/refname"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_toRightOf="@+id/refimage"/>
-   </RelativeLayout>
+
+        <TextView
+            android:id="@+id/refname"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/refname"
+            android:paddingTop="25sp"
+            android:text="Click Image to Load Graph"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
 </LinearLayout>
+
+
