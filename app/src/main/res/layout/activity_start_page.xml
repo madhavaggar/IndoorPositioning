@@ -27,14 +27,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="INDOOR POSITIONING"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:gravity="center"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
 
             <ImageView
                 android:id="@+id/createnewproj"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/head"
                 android:layout_alignParentRight="true"
                 app:srcCompat="@drawable/contact" />
@@ -207,7 +208,7 @@
                     <ImageView
                         android:layout_width="75dp"
                         android:layout_height="75dp"
-                        android:src="@drawable/ic_location_pin" />
+                        android:src="@drawable/ic_map" />
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -15,42 +15,37 @@
     <uses-permission
         android:name="android.permission.ACCESS_COARSE_LOCATION"
         android:required="true" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
-
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:node="replace"/>
+    <uses-permission xmlns:tools="http://schemas.android.com/tools"
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:node="replace" />
 
     <application
         android:name=".BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security_config"
         tools:replace="android:name">
+        <activity android:name=".ui.PersonalAnalysis"></activity>
+
         <meta-data
-            tools:node="replace"
             android:name="android.support.VERSION"
             android:value="26.1.0"
-            />
+            tools:node="replace" />
+
         <activity android:name=".ui.StartPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
         <activity
             android:name=".ui.HomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ui.NewProjectActivity"
             android:label="@string/new_project" />
@@ -69,17 +64,18 @@
         <activity
             android:name=".ui.LocateMeActivity"
             android:label="@string/locate_me" />
-        <activity android:name=".ui.UnifiedNavigationActivity"
+        <activity
+            android:name=".ui.UnifiedNavigationActivity"
             android:label="Settings" />
-
-        <activity android:name=".ui.BackendDataSend"
-            android:theme="@android:style/Theme.NoDisplay"/>
+        <activity
+            android:name=".ui.BackendDataSend"
+            android:theme="@android:style/Theme.NoDisplay" />
         <activity android:name=".ui.Crowd_Activity" />
         <activity android:name=".ui.Navigation" />
         <activity android:name=".SearchRefActivity" />
+        <activity android:name=".CarLocation" />
 
         <service android:name=".core.WifiService" />
-
     </application>
 
 </manifest>

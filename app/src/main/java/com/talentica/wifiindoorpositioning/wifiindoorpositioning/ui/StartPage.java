@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.talentica.wifiindoorpositioning.wifiindoorpositioning.CarLocation;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.R;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.SearchRefActivity;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.IndoorProject;
@@ -87,7 +88,13 @@ public class StartPage extends AppCompatActivity {
             }, 5* 60 * 1000); // first run after 5 minutes
 
         }
-
+        personal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(StartPage.this,PersonalAnalysis.class);
+                startActivity(intent);
+            }
+        });
         locateme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,11 +108,18 @@ public class StartPage extends AppCompatActivity {
                 }
             }
         });
+        locatecar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartPage.this, CarLocation.class);
+                startActivity(intent);
+            }
+        });
         crowd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(StartPage.this, SearchRefActivity.class);
+                Intent intent = new Intent(StartPage.this, Crowd_Activity.class);
                 intent.putExtra("projectId", projectId);
                 startActivity(intent);
             }
