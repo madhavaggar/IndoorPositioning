@@ -24,7 +24,7 @@ import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 public class StartPage extends AppCompatActivity {
-    CardView locateme,locatecar,crowd,personal;
+    CardView locateme,locatecar,crowd,personal,navigate;
     ImageView createnewproject;
     private RealmResults<IndoorProject> projects;
     private String projectId;
@@ -39,6 +39,8 @@ public class StartPage extends AppCompatActivity {
         projectId = getIntent().getStringExtra("projectId");
         locateme = (CardView)findViewById(R.id.locateme);
         locatecar = (CardView)findViewById(R.id.locatecar);
+        navigate = (CardView)findViewById(R.id.navigate);
+
         locatecar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +106,15 @@ public class StartPage extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(StartPage.this, SearchRefActivity.class);
+                intent.putExtra("projectId", projectId);
+                startActivity(intent);
+            }
+        });
+
+        navigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartPage.this,Navigation.class);
                 intent.putExtra("projectId", projectId);
                 startActivity(intent);
             }

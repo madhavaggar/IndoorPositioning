@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainListView"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgapps"
-    android:clipChildren="false"
-    android:clipToPadding="false"
-    android:divider="@android:color/transparent"
-    android:dividerHeight="10dp"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:scrollbars="none"
-    tools:context=".SearchRefActivity" />
+    android:orientation="vertical"
+    android:padding="20dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SearchRefActivity">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CROWD ANALYSIS"
+        android:textSize="30sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:paddingBottom="10dp"
+        android:gravity="center_horizontal"/>
+
+    <ListView
+        android:id="@+id/mainListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:paddingBottom="16dp"
+        android:scrollbars="none" />
+
+</LinearLayout>

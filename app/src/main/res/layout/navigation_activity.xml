@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/bgapps"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="WIFI NAVIGATION"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold">
+        </TextView>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:visibility="invisible"/>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        android:background="@android:color/holo_blue_light"
+        app:cardElevation="6dp">
+
+    <EditText
+        android:id="@+id/from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:drawableLeft="@drawable/circle_black"
+        android:drawablePadding="10dp"
+
+        android:hint="From Location"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:visibility="invisible" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        android:background="@android:color/holo_blue_light"
+
+        app:cardElevation="6dp">
+
+
+    <EditText
+        android:id="@+id/to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/circle_red"
+        android:hint="To Location"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/buttonnav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="FIND ROUTE" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="10dp"
+        android:paddingRight="10dp" />
+
+
+</LinearLayout>

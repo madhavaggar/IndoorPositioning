@@ -23,7 +23,6 @@ public class ReferencePoint extends RealmObject {
     private String description;
     private double x;
     private double y;
-    private View.OnClickListener requestBtnClickListener;
 
     //    Important: must set it as: x y (space in between)
     private String locId;
@@ -93,10 +92,6 @@ public class ReferencePoint extends RealmObject {
 
     public void setReadings(RealmList<AccessPoint> readings) {
         this.readings = readings;
-    }
-
-    public View.OnClickListener getRequestBtnClickListener() {
-        return requestBtnClickListener;
     }
 
 

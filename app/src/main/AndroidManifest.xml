@@ -75,6 +75,7 @@
         <activity android:name=".ui.BackendDataSend"
             android:theme="@android:style/Theme.NoDisplay"/>
         <activity android:name=".ui.Crowd_Activity" />
+        <activity android:name=".ui.Navigation" />
         <activity android:name=".SearchRefActivity" />
 
         <service android:name=".core.WifiService" />
