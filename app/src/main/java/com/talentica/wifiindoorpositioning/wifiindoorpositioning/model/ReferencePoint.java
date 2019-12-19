@@ -1,5 +1,7 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.model;
 
+import android.view.View;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,7 +23,9 @@ public class ReferencePoint extends RealmObject {
     private String description;
     private double x;
     private double y;
-//    Important: must set it as: x y (space in between)
+    private View.OnClickListener requestBtnClickListener;
+
+    //    Important: must set it as: x y (space in between)
     private String locId;
 //    Important: These readings list count must be equal to the number of APS in area.
 //    If some AP is not accesible at this RP then put the least RSS value i.e. NaN in Algorithms.java
@@ -90,4 +94,10 @@ public class ReferencePoint extends RealmObject {
     public void setReadings(RealmList<AccessPoint> readings) {
         this.readings = readings;
     }
+
+    public View.OnClickListener getRequestBtnClickListener() {
+        return requestBtnClickListener;
+    }
+
+
 }

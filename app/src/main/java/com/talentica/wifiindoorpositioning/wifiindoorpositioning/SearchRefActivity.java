@@ -1,31 +1,71 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+import io.realm.Realm;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.ramotion.foldingcell.FoldingCell;
+import com.talentica.wifiindoorpositioning.wifiindoorpositioning.adapter.holder.ReferencePointSection;
+import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.IndoorProject;
+import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.ReferencePoint;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
+
 
 public class SearchRefActivity extends AppCompatActivity {
+
+    String projectId;
+    private IndoorProject project;
+    private SectionedRecyclerViewAdapter sectionAdapter = new SectionedRecyclerViewAdapter();
+    private ReferencePointSection rpSec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_ref);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        // get our list view
+        ListView theListView = findViewById(R.id.mainListView);
+        projectId = getIntent().getStringExtra("projectId");
+        Realm realm = Realm.getDefaultInstance();
+        project = realm.where(IndoorProject.class).equalTo("id", projectId).findFirst();
+        // prepare elements to display
+        final List<ReferencePoint> items = project.getRps();//
+
+        // create custom adapter that holds elements and their state (we need hold a id's of unfolded elements for reusable elements)
+        final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this, items);
+
+        // add default btn handler for each request btn on each item if custom handler not found
+        adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "DEFAULT HANDLER FOR ALL BUTTONS", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+        // set elements to adapter
+        theListView.setAdapter(adapter);
+
+        // set on click event listener to list view
+        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                // toggle clicked cell state
+                ((FoldingCell) view).toggle(false);
+                // register in adapter that state for selected cell is toggled
+                adapter.registerToggle(pos);
+            }
+        });
+
+    }
 }
