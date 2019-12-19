@@ -1,10 +1,11 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.utils;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by suyashg on 25/08/17.

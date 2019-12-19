@@ -1,11 +1,12 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.adapter;
 
 import android.net.wifi.ScanResult;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.R;
 

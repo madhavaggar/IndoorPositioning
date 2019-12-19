@@ -1,8 +1,10 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.adapter.holder;
 
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.R;
 

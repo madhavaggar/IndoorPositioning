@@ -36,7 +36,8 @@
 
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.model;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public class LocDistance implements Comparable<LocDistance> {
     private double distance;

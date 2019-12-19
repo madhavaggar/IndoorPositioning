@@ -50,7 +50,7 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_points"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -61,6 +61,6 @@
         android:id="@+id/btn_locate_me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Locate Me" />
+        android:text="CONFIRM OPTION" />
 
 </LinearLayout>
