@@ -28,7 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".ui.PersonalAnalysis"></activity>
+        <activity android:name=".ui.Offers" />
+        <activity android:name=".ui.PersonalAnalysis" />
 
         <meta-data
             android:name="android.support.VERSION"
@@ -45,7 +46,7 @@
         <activity
             android:name=".ui.HomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.NewProjectActivity"
             android:label="@string/new_project" />

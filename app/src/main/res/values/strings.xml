@@ -47,4 +47,10 @@
     <string name="content_to1_mock">46th Ave</string>
     <string name="content_to2_mock">Woodside, NY 11101</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string-array name="WifiName">
+        <item name="connect">"hack_room"</item>
+        <item name="">""</item>
+        <item name="3">3</item>
+        <item name="4">4</item>
+    </string-array>
 </resources>

@@ -163,7 +163,7 @@ public class AddOrEditReferencePointActivity extends AppCompatActivity implement
         for (Map.Entry<String, List<Integer>> entry : values.entrySet()) {
             List<Integer> readingsOfAMac = entry.getValue();
             Double mean = calculateMeanValue(readingsOfAMac);
-            Log.v(TAG, "entry.Key:"+entry.getKey()+" aps:"+aps);
+            Log.v("DIFFERENT ENTRY KEYS", "entry.Key:"+entry.getKey()+" aps:"+aps);
             AccessPoint accessPoint = aps.get(entry.getKey());
             AccessPoint updatedPoint = new AccessPoint(accessPoint);
             updatedPoint.setMeanRss(mean);
