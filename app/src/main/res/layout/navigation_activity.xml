@@ -10,12 +10,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="WIFI NAVIGATION"
         android:gravity="center"
+        android:text="WIFI NAVIGATION"
+        android:textColor="@color/white"
         android:textSize="30sp"
-        android:textColor="@android:color/black"
-        android:textStyle="bold">
-        </TextView>
+        android:textStyle="bold"></TextView>
 
     <TextView
         android:layout_width="match_parent"

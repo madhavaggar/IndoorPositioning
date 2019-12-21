@@ -10,23 +10,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:lines="1" />
+        android:lines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/point_identifier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:lines="1" />
+        android:lines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/point_x"
         android:layout_width="70dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/point_y"
         android:layout_width="70dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
 </LinearLayout>

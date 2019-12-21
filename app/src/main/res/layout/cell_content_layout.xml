@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:background="@drawable/bgapps"
+    android:visibility="gone"
+    >
 
     <!-- content header line -->
     <RelativeLayout
@@ -42,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/btnRequest"
+            android:background="@color/colorPrimary"
             android:padding="10dp"
             android:text="Average Crowd Frequency"
             android:drawableRight="@drawable/ic_expand_less"

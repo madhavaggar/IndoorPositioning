@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.github.mrgames13:SplashScreen:1.1.0'
 }

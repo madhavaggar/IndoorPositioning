@@ -19,7 +19,9 @@
         android:hint="Name"
         android:inputType="text"
         android:lines="1"
-        android:maxLength="50" />
+        android:maxLength="50"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,8 +37,9 @@
             android:hint="x (decimal)"
             android:inputType="numberDecimal"
             android:lines="1"
+            android:maxLength="10"
             android:text="0.0"
-            android:maxLength="10" />
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/et_rp_y"
@@ -46,8 +49,9 @@
             android:hint="y (decimal)"
             android:inputType="numberDecimal"
             android:lines="1"
+            android:maxLength="10"
             android:text="0.0"
-            android:maxLength="10" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,6 +66,7 @@
             android:layout_weight="1"
             android:lines="1"
             android:text="Name"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -72,6 +77,7 @@
             android:layout_weight="1"
             android:lines="1"
             android:text="Mac"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -81,6 +87,7 @@
             android:gravity="center"
             android:lines="1"
             android:text="RSSI"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
     </LinearLayout>

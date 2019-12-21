@@ -45,7 +45,7 @@ import io.realm.RealmList;
 
 public class AddOrEditReferencePointActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String TAG = "AddOrEditReferencePointActivity";
+    private static String TAG = "AddOrEditReferencePointActivity";
     private String projectId;
 
     private RecyclerView rvPoints;
@@ -55,16 +55,16 @@ public class AddOrEditReferencePointActivity extends AppCompatActivity implement
 
     private ReferenceReadingsAdapter readingsAdapter = new ReferenceReadingsAdapter();
     private List<AccessPoint> apsWithReading = new ArrayList<>();
-    private Map<String, List<Integer>> readings = new HashMap<>();
-    private Map<String, AccessPoint> aps = new HashMap<>();
+    private static Map<String, List<Integer>> readings = new HashMap<>();
+    private static Map<String, AccessPoint> aps = new HashMap<>();
 
     private AvailableAPsReceiver receiverWifi;
 
     private boolean wifiWasEnabled;
-    private WifiManager mainWifi;
+    private static WifiManager mainWifi;
     private final Handler handler = new Handler();
     private boolean isCaliberating = false;
-    private int readingsCount = 0;
+    private static int readingsCount = 0;
     private boolean isEdit = false;
     private String rpId;
     private ReferencePoint referencePointFromDB;
@@ -271,39 +271,42 @@ public class AddOrEditReferencePointActivity extends AppCompatActivity implement
         return referencePoint;
     }
 
-    class AvailableAPsReceiver extends BroadcastReceiver {
+    static class AvailableAPsReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            List<ScanResult> scanResults = mainWifi.getScanResults();
-            ++readingsCount;
-            for (Map.Entry<String, AccessPoint> entry : aps.entrySet()) {
-                String apMac = entry.getKey();
-                for (ScanResult scanResult : scanResults) {
-                    if (entry.getKey().equals(scanResult.BSSID)) {
-                        checkAndAddApRSS(apMac, scanResult.level);
-                        apMac = null;//do this after always :|
-                        break;
+            if (mainWifi != null) {
+                List<ScanResult> scanResults = mainWifi.getScanResults();
+                ++readingsCount;
+                for (Map.Entry<String, AccessPoint> entry : aps.entrySet()) {
+                    String apMac = entry.getKey();
+                    for (ScanResult scanResult : scanResults) {
+                        if (entry.getKey().equals(scanResult.BSSID)) {
+                            checkAndAddApRSS(apMac, scanResult.level);
+                            apMac = null;//do this after always :|
+                            break;
+                        }
+                    }
+                    if (apMac != null) {
+                        checkAndAddApRSS(apMac, AppContants.NaN.intValue());
                     }
                 }
-                if (apMac != null) {
-                    checkAndAddApRSS(apMac, AppContants.NaN.intValue());
-                }
-            }
 //            results.put(Calendar.getInstance(), map);
 
-            Log.v(TAG, "Count:" + readingsCount+" scanResult:"+ scanResults.toString()+" aps:"+aps.toString());
-            for (int i = 0; i < readingsCount; ++i) {
+                Log.v(TAG, "Count:" + readingsCount + " scanResult:" + scanResults.toString() + " aps:" + aps.toString());
+                for (int i = 0; i < readingsCount; ++i) {
 //                Log.v(TAG, "  BSSID       =" + results.get(i).BSSID);
 //                Log.v(TAG, "  SSID        =" + results.get(i).SSID);
 //                Log.v(TAG, "  Capabilities=" + results.get(i).capabilities);
 //                Log.v(TAG, "  Frequency   =" + results.get(i).frequency);
 //                Log.v(TAG, "  Level       =" + results.get(i).level);
 //                Log.v(TAG, "---------------");
+                }
+
             }
         }
     }
 
-    private void checkAndAddApRSS(String apMac, Integer level) {
+    private static void checkAndAddApRSS(String apMac, Integer level) {
         if (readings.containsKey(apMac)) {
             List<Integer> integers = readings.get(apMac);
             integers.add(level);

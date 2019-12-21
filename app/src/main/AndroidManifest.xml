@@ -28,7 +28,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".ui.Offers" />
         <activity android:name=".ui.PersonalAnalysis" />
 
         <meta-data
@@ -75,6 +74,7 @@
         <activity android:name=".ui.Navigation" />
         <activity android:name=".SearchRefActivity" />
         <activity android:name=".CarLocation" />
+        <activity android:name=".ui.Offers" />
 
         <service android:name=".core.WifiService" />
     </application>

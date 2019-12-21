@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@drawable/bgapps">
 
     <Button
         android:id="@+id/btn_wifi_refresh"
@@ -15,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Please switch on the WiFi and Location." />
+        android:text="Please switch on the WiFi and Location."
+        android:textColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_wifis"

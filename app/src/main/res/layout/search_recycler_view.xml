@@ -5,26 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bgapps">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_toolbarsearch"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:theme="@style/AppTheme.Toolbar"
-        android:contentInsetLeft="0dp"
         android:contentInsetStart="0dp"
-        android:contentInsetRight="0dp"
+        android:contentInsetLeft="0dp"
         android:contentInsetEnd="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetRight="0dp"
+        android:contentInsetRight="0dp"
+        android:theme="@style/AppTheme.Toolbar"
         app:contentInsetEnd="0dp"
-        />
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="@color/white" />
 
     <com.ramotion.foldingcell.FoldingCell
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/folding_cell"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,10 +46,13 @@
             android:id="@+id/cell_title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@android:color/holo_blue_dark" />
+                android:background="#753088"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
         </FrameLayout>
     </com.ramotion.foldingcell.FoldingCell>
 

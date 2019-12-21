@@ -3,14 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="@drawable/bgapps">
 
     <TextView
         android:id="@+id/wifi_ssid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:lines="1" />
+        android:lines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/wifi_bssid"
@@ -19,7 +22,9 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_weight="1"
-        android:lines="1" />
+        android:lines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <TextView
         android:id="@+id/wifi_level"
@@ -28,6 +33,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:lines="1"
-        android:text="-110" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
 </LinearLayout>

@@ -11,17 +11,20 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Access Points"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:text="X" />
+        android:text="X"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:text="Y" />
+        android:text="Y"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

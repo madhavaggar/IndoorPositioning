@@ -1,5 +1,6 @@
 package com.talentica.wifiindoorpositioning.wifiindoorpositioning.ui;
 
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,12 +21,15 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.R;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.adapter.ReferenceReadingsAdapter;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.AccessPoint;
@@ -33,6 +37,9 @@ import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.IndoorPro
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.model.ReferencePoint;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.utils.AppContants;
 import com.talentica.wifiindoorpositioning.wifiindoorpositioning.utils.Utils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +64,7 @@ public class LocateMeActivity extends AppCompatActivity{
     private Map<String, List<Integer>> readings = new HashMap<>();
     private Map<String, AccessPoint> aps = new HashMap<>();
 
-    private AvailableAPsReceiver receiverWifi;
+    private AddOrEditReferencePointActivity.AvailableAPsReceiver receiverWifi;
 
     private boolean wifiWasEnabled;
     private WifiManager mainWifi;
@@ -84,7 +91,7 @@ public class LocateMeActivity extends AppCompatActivity{
         tv = (TextView)findViewById(R.id.tv_nearest_location);
         pb = (ProgressBar) findViewById(R.id.pb);
         map = (ImageView)findViewById(R.id.map);
-        button = (ImageButton) findViewById(R.id.plot);
+
         readingsCount=0;
         wifi= new ArrayList<String>();
         ref = new ArrayList<String>();
@@ -119,30 +126,105 @@ public class LocateMeActivity extends AppCompatActivity{
             readingsAdapter.notifyDataSetChanged();
         } else {
             mainWifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            mainWifi.setWifiEnabled(false);
+
             mainWifi.setWifiEnabled(true);
-            receiverWifi = new AvailableAPsReceiver();
+            receiverWifi = new AddOrEditReferencePointActivity.AvailableAPsReceiver();
             wifiWasEnabled = mainWifi.isWifiEnabled();
 
-            IndoorProject project = realm.where(IndoorProject.class).equalTo("id", projectId).findFirst();
-            RealmList<AccessPoint> points = project.getAps();
-            for (AccessPoint accessPoint : points) {
-                aps.put(accessPoint.getMac_address(), accessPoint);
-            }
-            if (aps.isEmpty()) {
-                Toast.makeText(this, "No Access Points Found", Toast.LENGTH_SHORT).show();
-            }
-            if (!Utils.isLocationEnabled(this)) {
-                Toast.makeText(this,"Please turn on the location", Toast.LENGTH_SHORT).show();
+            RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+
+            String url = "http://10.2.89.153:8000/api/get_wifi";// <----enter your post url here
+
+            JSONObject paramJson = new JSONObject();
+            try {
+                paramJson.put("body", new Gson().toJson(mainWifi.getScanResults()));
+                Log.d("tag",String.valueOf(mainWifi.getScanResults().size()));
+            } catch (Exception e) {
             }
 
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            final JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, url, paramJson,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
+                            // display response
+                            try {
+                                name = (String) response.get("name");
+                                tv.setText("You are near " + name);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                            String url = "http://10.2.89.153:8000/api/get_image";     // <----enter your post url here
+                            Log.d("url to send", url);
+                            pb.setVisibility(View.VISIBLE);
+                            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                            // Initialize a new ImageRequest
+                            ImageRequest imageRequest = new ImageRequest(
+                                    url,// Image URL
+                                    new Response.Listener<Bitmap>() { // Bitmap listener
+                                        @Override
+                                        public void onResponse(Bitmap response) {
+                                            // Do something with response
+                                            Glide.with(getApplicationContext()).load(response).fitCenter().into(map);
+
+                                            // Save this downloaded bitmap to internal storage
+
+
+                                            // Display the internal storage saved image to image view
+                                        }
+                                    },
+                                    0, // Image width
+                                    0, // Image height
+                                    ImageView.ScaleType.CENTER_CROP, // Image scale type
+                                    Bitmap.Config.RGB_565, //Image decode configuration
+                                    new Response.ErrorListener() { // Error listener
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            // Do something with error response
+                                            error.printStackTrace();
+                                            Toast.makeText(getApplicationContext(), "errormsg" + error.getMessage(), Toast.LENGTH_LONG).cancel();
+                                        }
+                                    }
+                            );
+                            pb.setVisibility(View.INVISIBLE);
+                            // Add ImageRequest to the RequestQueue
+                            MyRequestQueue.add(imageRequest);
+                            Toast.makeText(getApplicationContext(), "positive" + response.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), "errormsg" + error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }) {
+                protected Map<String, String> getParams() {
+                    Map<String, String> MyData = new HashMap<String, String>();
+                    return MyData;
                 }
-            });
+            };
+            MyRequestQueue.add(getRequest);
+
         }
+
+
+        IndoorProject project = realm.where(IndoorProject.class).equalTo("id", projectId).findFirst();
+        RealmList<AccessPoint> points = project.getAps();
+        for (AccessPoint accessPoint : points) {
+            aps.put(accessPoint.getMac_address(), accessPoint);
+        }
+        if (aps.isEmpty()) {
+            Toast.makeText(this, "No Access Points Found", Toast.LENGTH_SHORT).show();
+        }
+        if (!Utils.isLocationEnabled(this)) {
+            Toast.makeText(this,"Please turn on the location", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -164,7 +246,7 @@ public class LocateMeActivity extends AppCompatActivity{
         if (!isEdit) {
             unregisterReceiver(receiverWifi);
             isCaliberating = false;
-            mainWifi.setWifiEnabled(false);
+
         }
         super.onPause();
     }
@@ -313,7 +395,6 @@ public class LocateMeActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         if (!wifiWasEnabled && !isEdit) {
-            mainWifi.setWifiEnabled(false);
         }
     }
 }

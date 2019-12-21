@@ -9,6 +9,7 @@
         android:id="@+id/tv_project_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:lines="1" />
+        android:lines="1"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 </LinearLayout>

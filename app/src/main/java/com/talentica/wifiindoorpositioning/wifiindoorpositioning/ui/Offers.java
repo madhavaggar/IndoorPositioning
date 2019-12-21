@@ -25,7 +25,7 @@ import java.util.Map;
 public class Offers extends AppCompatActivity {
 
     String name;
-    TextView t1,t2;
+    TextView t1,t2,t3,t4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,9 @@ public class Offers extends AppCompatActivity {
         setContentView(R.layout.activity_offers);
         t1=findViewById(R.id.offers1);
         t2=findViewById(R.id.offers2);
-        name="game_room" ;
+        t3=findViewById(R.id.of1);
+        t4=findViewById(R.id.of2);
+        name="game_room";
         RequestQueue MyRequestQueue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://10.2.89.153:8000/api/get_offers?rp=";// <----enter your post url here
         url=url + name;
@@ -47,21 +49,21 @@ public class Offers extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // display response
-                        GsonBuilder builder = new GsonBuilder();
-                        Gson mgson=builder.create();
-                        OfferItem offers1 = mgson.fromJson(response.getString("1").toString(),OfferItem.class);
-                        OfferItem offers2 = mgson.fromJson(response.getString("2").toString(),OfferItem.class);
-
                         try {
-                             offers1 =(OfferItem) response.get("1");
-                             offers2 =(OfferItem) response.get("2");
-                             t1.setText(offers1.rpname);
-                             t2.setText(offers2.rpname);
+                            String r1 = (String) response.get("rpname1");
+                            String r2 = (String) response.get("offers1");
+
+                            String r3 = (String) response.get("rpname2");
+                            String r4 = (String) response.get("offers2");
+
+                            t1.setText(r2);
+                            t2.setText(r4);
+                            t3.setText("Powered by " + r1);
+                            t4.setText("Powered by " + r3);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        //Toast.makeText(getApplicationContext(), "positive" + response.toString(), Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

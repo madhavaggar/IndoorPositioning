@@ -3,8 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorBackground">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,45 +18,45 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@android:color/holo_green_dark</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">@android:color/white</item>
-        <item name="android:editTextColor">@android:color/holo_red_dark</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
         <item name="searchViewStyle">@style/AppTheme.Toolbar.SearchView</item>
     </style>
 
     <style name="AppTheme.Toolbar.SearchView" parent="Widget.AppCompat.SearchView">
-        <item name="queryBackground">@android:color/holo_green_light</item>
+        <item name="queryBackground">@color/colorPrimaryDark</item>
         <item name="searchIcon">@android:drawable/ic_menu_search</item>
     </style>
 
     <style name="ContentImageBadgeTitle" parent="AppTheme">
         <item name="android:alpha">0.5</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12dp</item>
     </style>
 
     <style name="ContentImageBadgeText" parent="AppTheme">
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20dp</item>
         <item name="android:textStyle">bold</item>
 
     </style>
 
     <style name="ContentMainBadgeTitle" parent="AppTheme">
-        <item name="android:textColor">@color/contentBadgeTitle</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12dp</item>
     </style>
 
     <style name="TitleBadgeText" parent="AppTheme">
-        <item name="android:textColor">@color/titleBadgeText</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20dp</item>
     </style>
 
     <style name="TitleBadgeTitle" parent="AppTheme">
-        <item name="android:textColor">@color/titleBadgeTitle</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12dp</item>
     </style>
 

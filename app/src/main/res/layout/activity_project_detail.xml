@@ -38,7 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="Access Point:0" />
+            android:text="Access Point:0"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/tv_rp_count"
@@ -46,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="Reference Point:0" />
+            android:text="Reference Point:0"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
